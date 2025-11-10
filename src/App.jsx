@@ -29,9 +29,9 @@ function App() {
         <section className="py-5 text-center container">
           <div className="row py-lg-5">
             <div className="col-lg-6 col-md-8 mx-auto">
-              <h1 className="fw-light">Vitrine de Produtos</h1>
+              <h1 className="fw-light"><b>CARZONE</b></h1>
               <p className="lead text-body-secondary">
-                Confira nossos produtos em destaque.
+                Confira nossos carros em destaque.
               </p>
             </div>
           </div>
