@@ -1,0 +1,11 @@
+.nome-veiculo{
+    color: rgb(0, 0, 0); /* Mude para 'red' para testar. Se funcionar, volte para 'black' */
+    font-weight: bold; /* Deixa em negrito */
+    font-size: 1.1rem; /* Aumenta um pouquinho a letra */
+    margin: 0;
+}
+
+.link {
+    text-decoration: none;
+    color:black;
+}

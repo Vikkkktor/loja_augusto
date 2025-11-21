@@ -1,0 +1,52 @@
+.page{
+    background-color: rgb(226, 226, 226);
+    min-height: 100vh;
+    display: flex;
+    gap: 35vh;
+}
+
+
+.foto-carro{
+    width: fit-content;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.imagem-principal{
+    height: 65vh;
+    width: 100vh;
+    max-width: 90vw;
+    border-radius: 10px;
+    display: block;
+    object-fit: cover;
+    margin-left: 5vh;
+}
+
+.setas{
+    width: 4vh !important;
+    height: auto;
+    cursor: pointer;
+    position: absolute; 
+    top: 50%; 
+    z-index: 10;
+}
+
+.seta-esquerda {
+    left: 5vh; 
+}
+.seta-direita {
+    right: 0vh;
+}
+
+.descricao-carro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    width: 50vh;
+    height: 60vh;
+    margin-top: 20vh;
+    border-radius: 30px;
+}
