@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Veiculo from './Veiculo';
 import Inicio from './Inicio';
-import CardVeiculo from './CardVeiculo';
 import logo from './logo.jpg';
 import './App.css';
 import './index.css';

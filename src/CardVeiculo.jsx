@@ -7,7 +7,7 @@ function CardVeiculo(props){
     return(
         <div className="col"> 
             <div className="card shadow-sm"> 
-                <Link to={`/veiculo/${props.id}`}>
+                <Link className="link" to={`/veiculo/${props.id}`}>
                 <img
                     src={props.img}
                     className= "bd-placeholder-img card-img-top" 
