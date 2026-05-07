@@ -19,17 +19,18 @@
 
 .header-logo{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 40px;
 }
 
 .botao-login {
   background-color: white; 
-  border-width: 0;
+  border: none;
   font-family: 'Cossette Texte';
   font-weight: 700;
-  margin-left: auto;
+  text-decoration: none;
+  color: black;
 }
 
 

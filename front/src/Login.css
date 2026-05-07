@@ -1,0 +1,38 @@
+.forms{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 1%;
+    background-color: rgba(248, 244, 244, 0.425);
+    border-radius: 10%;
+    justify-content: center;
+    height: 50vh;
+    margin-left: 37%;
+}
+
+.forms input{
+    height: 50px;
+    width: 70%;
+    background-color: #ecedee;
+    border-style: none;
+    border-radius: 6px;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+.forms button{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+    width: 35%;
+    height: 40px;
+    margin-top: 30px;
+}
+
+.criar-conta{
+    text-decoration: none;
+    font-size: larger;
+}

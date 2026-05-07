@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Veiculo from './Veiculo';
 import Inicio from './Inicio';
+import Login from './Login';
+import Cadastro from './Cadastro';
 import logo from './logo.jpg';
 import './App.css';
 import './index.css';
@@ -12,13 +14,11 @@ function App() {
         <div className="App">
           <header className="header-logo"> 
               <div> 
-                <div className="container"> 
-                      <Link to="/" className="navbar-brand"><img src={logo} alt="logo" width="80" height="80" className="me-2" /></Link>
-                </div> 
+                  <Link to="/" className="navbar-brand"><img src={logo} alt="logo" width="80" height="80" className="me-2" /></Link>
               </div>    
 
               <div>
-                <button className="botao-login">LOGIN</button>
+                <Link to="/login" className="botao-login">LOGIN</Link>
               </div>
 
           </header>
@@ -28,6 +28,11 @@ function App() {
             <Route path="/" element={<Inicio />}/>
             
             <Route path="/veiculo/:id" element={<Veiculo />}/>
+
+            <Route path="/login" element={<Login />}/>
+
+            <Route path="/cadastro" element={<Cadastro />} />
+
           </Routes>
         </main>
 
