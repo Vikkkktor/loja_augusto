@@ -1,33 +1,49 @@
 const express = require('express');
 const cors = require('cors');
+const sqlite3 = require('sqlite3').verbose();
+
 const app = express();
 const PORT = 5000;
 
-// Middleware
 app.use(cors()); 
 app.use(express.json()); 
 
-// Armazenamento das mensagens (em memória) 
-let mensagens = [
-{ id: 1, texto: "Crud funfando" }
-];
+const db = new sqlite3.Database('./banco.db', (err) => {
+    if(err){
+        console.error("Erro na conexão com o banco: ", err.message);
+    }else{
+        console.log("Conexão realizada com sucesso!");
 
-// Rota GET - retorna todas as mensagens
-app.get('/mensagens', (req, res) => {
-res.json(mensagens);
+        db.run(`CREATE TABLE IF NOT EXISTS usuarios (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome VARCHAR(100) NOT NULL,
+            email VARCHAR(100) UNIQUE NOT NULL,
+            CPF VARCHAR(11) NOT NULL
+            senha TEXT NOT NULL)`);
+    }
+}); 
+
+app.post('/usuarios', (req, res) => {
+  const novoUsuario = {
+    nome, email, cpf, senha
+  } = req.body;
+
+  const insert = 'INSERT into usuarios (nome, email, cpf, senha) VALUES (?,?,?, ?)';
+  const params = [nome, email, cpf, senha];
+
+  db.run(insert, params, function(err){
+    if(err){
+        return res.status(400).json({erro: "Erro ao cadastrar"})
+    }
+    res.status(201).json({
+            id: this.lastID,
+            nome,
+            email,
+            cpf
+        });
+  });
 });
 
-// Rota POST - adiciona uma nova mensagem
-app.post('/mensagens', (req, res) => {
-const novaMensagem = {
-id: mensagens.length + 1,
-texto: req.body.texto
-};
-
-mensagens.push(novaMensagem);
-res.status(201).json(novaMensagem); // Retorna a mensagem criada
-});
-// Inicia o servidor
 app.listen(PORT, () => {
 console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

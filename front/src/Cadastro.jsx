@@ -7,6 +7,8 @@ function Cadastro(props){
 
                     <input type="text" placeholder='Nome de Usuário'></input>
 
+                    <input type="text" placeholder='CPF'></input>
+
                     <input type="text" placeholder='Email'></input>
 
                     <input type="text" placeholder='Senha'></input>
