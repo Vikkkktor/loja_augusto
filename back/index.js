@@ -18,7 +18,7 @@ const db = new sqlite3.Database('./banco.db', (err) => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nome VARCHAR(100) NOT NULL,
             email VARCHAR(100) UNIQUE NOT NULL,
-            CPF VARCHAR(11) NOT NULL
+            CPF VARCHAR(11) NOT NULL,
             senha TEXT NOT NULL)`);
     }
 }); 
