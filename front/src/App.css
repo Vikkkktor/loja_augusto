@@ -24,13 +24,14 @@
   padding: 10px 40px;
 }
 
-.botao-login {
+.botoes a {
   background-color: white; 
   border: none;
   font-family: 'Cossette Texte';
   font-weight: 700;
   text-decoration: none;
   color: black;
+  margin-left: 50px;
 }
 
 

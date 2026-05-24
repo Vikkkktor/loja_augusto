@@ -6,6 +6,7 @@ import Cadastro from './Cadastro';
 import logo from './logo.jpg';
 import './App.css';
 import './index.css';
+import AdicionarCarro from './AdicionarVeiculo';
 
 function App() {
   return (
@@ -17,8 +18,10 @@ function App() {
                   <Link to="/" className="navbar-brand"><img src={logo} alt="logo" width="80" height="80" className="me-2" /></Link>
               </div>    
 
-              <div>
-                <Link to="/login" className="botao-login">LOGIN</Link>
+              <div className="botoes">
+                <Link to="/login">ADICIONAR VEICULO</Link>
+
+                <Link to="/login">LOGIN</Link>
               </div>
 
           </header>
@@ -32,6 +35,8 @@ function App() {
             <Route path="/login" element={<Login />}/>
 
             <Route path="/cadastro" element={<Cadastro />} />
+
+            <Route path="/adicionarveiculo" element={<AdicionarVeiculo />} />
 
           </Routes>
         </main>
