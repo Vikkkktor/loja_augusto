@@ -4,9 +4,9 @@ import Inicio from './Inicio';
 import Login from './Login';
 import Cadastro from './Cadastro';
 import logo from './logo.jpg';
+import AdicionarVeiculo from './AdicionarVeiculo';
 import './App.css';
 import './index.css';
-import AdicionarCarro from './AdicionarVeiculo';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
               </div>    
 
               <div className="botoes">
-                <Link to="/login">ADICIONAR VEICULO</Link>
+                <Link to="/adicionarveiculo">ADICIONAR VEICULO</Link>
 
                 <Link to="/login">LOGIN</Link>
               </div>
@@ -36,7 +36,7 @@ function App() {
 
             <Route path="/cadastro" element={<Cadastro />} />
 
-            <Route path="/adicionarveiculo" element={<AdicionarVeiculo />} />
+            <Route path="/adicionarveiculo" element={<AdicionarVeiculo />} /> 
 
           </Routes>
         </main>
