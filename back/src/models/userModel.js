@@ -1,9 +1,9 @@
 const db = require('../config/db'); 
 
 
-const criar = (nome, email, cpf, senha, callback) => {
-  const insert = 'INSERT into usuarios (nome, email, cpf, senha) VALUES (?,?,?, ?)';
-  const params = [nome, email, cpf, senha];
+const criar = (nome, email, CPF, senha, callback) => {
+  const insert = 'INSERT into usuarios (nome, email, CPF, senha) VALUES (?,?,?, ?)';
+  const params = [nome, email, CPF, senha];
 
   db.run(insert, params, function(err){
     callback(err, this ? this.lastID : null);

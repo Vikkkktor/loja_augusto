@@ -3,7 +3,7 @@ import Veiculo from './Veiculo';
 import Inicio from './Inicio';
 import Login from './Login';
 import Cadastro from './Cadastro';
-import logo from './logo.jpg';
+import logo from './assets/logo.jpg';
 import AdicionarVeiculo from './AdicionarVeiculo';
 import './App.css';
 import './index.css';

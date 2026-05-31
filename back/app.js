@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const userController = require('./src/controllers/userController');
+const veiculoRoutes = require('./src/routes/veiculoRoutes');
+const veiculoController = require('./src/controllers/veiculoController');
 const session = require('express-session')
 
 const app = express();
@@ -17,5 +19,10 @@ app.use(express.json());
 app.post('/usuarios', userController.criarUsuario);
 app.post('/login', userController.login);
 app.get('/sessao', userController.checkSession);
+
+app.use('/veiculos', veiculoRoutes);
+app.use('/uploads', express.static('veiculos'));
+app.get('/veiculos', veiculoController.listarTodos);
+app.get('/veiculos/:id', veiculoController.buscarPorId);
 
 module.exports = app;

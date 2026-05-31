@@ -6,21 +6,34 @@ function Cadastro(props){
     const [email, setEmail] = useState('');
     const [cpf, setCPF] = useState('');
     const [senha, setSenha] = useState('');
+    const [confirmaSenha, setConfirmaSenha] = useState('');
     const [mensagemErro, setMensagemErro] = useState('');
 
     const cadastrarUsuario = (e) => {
         e.preventDefault();
         setMensagemErro('');
 
-        if (!nome || !email || !senha) {
+        if (!nome || !email || !senha || !setConfirmaSenha) {
             setMensagemErro('Por favor, preencha todos os campos.');
             return;
         }
 
+        const cpfLimpo = cpf.replace(/\D/g, ''); 
+        if (cpfLimpo.length !== 11) {
+            setMensagemErro('O CPF deve conter 11 numeros.');
+            return;
+        }
+
+        if (senha !== confirmaSenha) {
+            setMensagemErro('As senhas devem ser iguais');
+            return;
+        }
+
+
         fetch('http://localhost:5000/usuarios', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({nome, email, cpf, senha})
+            body: JSON.stringify({nome, email, cpf: cpfLimpo, senha})
             })
             .then(async (res) => {
                 const resu = await res.json();
@@ -35,7 +48,11 @@ function Cadastro(props){
                 setNome('');
                 setEmail('');
                 setSenha('');
+                setConfirmaSenha('');
                 setCPF('');
+
+            window.location.href = '/login'; 
+                
             })
             .catch((err) => {
             setMensagemErro(err.message);
@@ -56,7 +73,7 @@ function Cadastro(props){
 
                     <input type="password" placeholder='Senha' required value={senha} onChange={(e) => setSenha(e.target.value)} ></input>
 
-                    <input type="password" placeholder='Confirme a senha'></input>
+                    <input type="password" placeholder='Confirme a senha' onChange={(e) => setConfirmaSenha(e.target.value)}></input>
 
                     <button type="submit" form="form1" value="Submit">Cadastrar</button>
 

@@ -1,26 +1,36 @@
 import './Veiculo.css';
-import carros from './carros';
-import setaD from './seta-direita.png';
-import setaE from './seta-esquerda.png';
-import dataF from './ano.png';
-import kmRo from './km_rodados.png';
-import comb from './combustivel.png';
-import cambi from './cambio.png';
+import setaD from './assets/seta-direita.png';
+import setaE from './assets/seta-esquerda.png';
+import dataF from './assets/ano.png';
+import kmRo from './assets/km_rodados.png';
+import comb from './assets/combustivel.png';
+import cambi from './assets/cambio.png';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Veiculo() {
     const { id } = useParams();
-    const carro = carros.find((item) => item.id === parseInt(id));
+    const [carro, setCarro] = useState(null);
     const [indiceFoto, setIndice] = useState(0);
 
     const[cep, setCEP] = useState("");
     const[cidade, setCidade] = useState("");
     const[uf, setUF] = useState("");
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/veiculos/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            if (!data.erro) {
+                setCarro(data);
+            }
+        })
+        .catch(err => console.error("Erro:", err));
+    }, [id]);
+
     if (!carro) {
-    return <h2>Carro não encontrado!</h2>;
-  }
+        return <h2 style={{ textAlign: 'center', marginTop: '50px' }}>Carregando veículo...</h2>;
+    }
 
     const passarFoto = () =>{
         if (indiceFoto === carro.imagens.length - 1){
@@ -38,8 +48,8 @@ function Veiculo() {
         }
     };
 
-    const definirLogo = (titulo) => {
-        const nomeFormatado = titulo.toLowerCase();
+    const definirLogo = (marca) => {
+        const nomeFormatado = marca ? marca.toLowerCase() : "";
 
         if (nomeFormatado.includes("chevrolet")){
             return "https://www.chavesnamao.com.br/imn/0060x0042/D/cdn/portal/vehicle/logo/carro/chevrolet.png";
@@ -47,6 +57,22 @@ function Veiculo() {
             return "https://www.chavesnamao.com.br/imn/0060x0042/D/cdn/portal/vehicle/logo/carro/volkswagen.png";
         }else if(nomeFormatado.includes("ford")){
             return "https://www.chavesnamao.com.br/imn/0060x0042/D/cdn/portal/vehicle/logo/carro/ford.png";
+        }else if(nomeFormatado.includes("toyota")){
+            return "https://www.chavesnamao.com.br/imn/0062x0032/D/cdn/portal/vehicle/logo/carro/toyota.png";
+        }else if(nomeFormatado.includes("volvo")){
+            return "https://www.chavesnamao.com.br/imn/0062x0032/D/cdn/portal/vehicle/logo/carro/volvo.png";
+        }else if(nomeFormatado.includes("hyundai")){
+            return "https://www.chavesnamao.com.br/imn/0062x0032/D/cdn/portal/vehicle/logo/carro/hyundai.png";
+        }else if(nomeFormatado.includes("audi")){
+            return "https://www.chavesnamao.com.br/imn/0062x0032/D/cdn/portal/vehicle/logo/carro/audi.png";
+        }else if(nomeFormatado.includes("honda")){
+            return "https://www.chavesnamao.com.br/imn/0062x0032/D/cdn/portal/vehicle/logo/carro/honda.png";
+        }else if(nomeFormatado.includes("fiat")){
+            return "https://www.chavesnamao.com.br/imn/0062x0032/D/cdn/portal/vehicle/logo/carro/fiat.png";
+        }else if(nomeFormatado.includes("bmw")){
+            return "https://www.chavesnamao.com.br/imn/0062x0032/D/cdn/portal/vehicle/logo/carro/bmw.png";
+        }else if(nomeFormatado.includes("mercedez-benz")){
+            return "https://www.chavesnamao.com.br/imn/0062x0032/D/cdn/portal/vehicle/logo/carro/mercedes-benz.png";
         }
 
         return "";
@@ -73,43 +99,41 @@ function Veiculo() {
 
         }
 
-
-
   return(
         <div className="page">
             
             <div className="foto-carro">  
-                <img src={setaE} onClick={voltarFoto} className='setas seta-esquerda'/>
-                <img src={setaD} onClick={passarFoto} className='setas  seta-direita'/>
-                <img src={carro.imagens[indiceFoto]} alt={carro.titulo} className="imagem-principal"/>                   
+                <img alt="" src={setaE} onClick={voltarFoto} className='setas seta-esquerda'/>
+                <img alt=""src={setaD} onClick={passarFoto} className='setas  seta-direita'/>
+                <img src={`http://localhost:5000/uploads/${carro.imagens[indiceFoto]}`} alt={carro.titulo} className="imagem-principal"/>                   
             </div> 
           
             <div className='descricao-carro'>
                
                 <div className='conteudo-descricao'>
                    
-                    <img src={definirLogo(carro.titulo)} className="Logo"/>
-                    <b><p>{carro.titulo}</p></b>
+                    <img alt=""src={definirLogo(carro.marca)} className="Logo"/>
+                    <b><p>{`${carro.marca} ${carro.modelo}`}</p></b>
                     
                     <div className='caracteristicas'>
 
                         <div className='item-info'> 
-                            <img src={dataF} className='simbolos'/>
+                            <img alt="" src={dataF} className='simbolos'/>
                             <span><b>{carro.ano}</b></span>
                         </div>
 
                          <div className='item-info'> 
-                            <img src={kmRo} className='simbolos'/>
-                            <span><b>{carro.km_rodados}</b></span>
+                            <img alt=""src={kmRo} className='simbolos'/>
+                            <span><b>{carro.km}</b></span>
                         </div>
 
                           <div className='item-info'> 
-                            <img src={comb} className='simbolos'/>
+                            <img alt=""src={comb} className='simbolos'/>
                             <span><b>{carro.combustivel}</b></span>
                         </div>
 
                           <div className='item-info'> 
-                            <img src={cambi} className='simbolos'/>
+                            <img alt=""src={cambi} className='simbolos'/>
                             <span><b>{carro.cambio}</b></span>
                         </div>
 

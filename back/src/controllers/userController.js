@@ -5,6 +5,7 @@ const criarUsuario = (req, res) => {
 
     userModel.criar(nome, email, cpf, senha, (err, lastID) => {
         if(err){
+            console.error("ERRO DO SQLITE AO CADASTRAR USUÁRIO:", err);
             return res.status(400).json({erro: "Erro ao cadastrar"})
         }
         

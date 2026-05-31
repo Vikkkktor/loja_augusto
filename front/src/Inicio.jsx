@@ -1,9 +1,21 @@
+import React, { useState, useEffect } from 'react';
 import CardVeiculo from './CardVeiculo'; 
 import './inicio.css'
-import carros from './carros.jsx';
 
 function Inicio(){
+  const [listaVeiculos, setListaVeiculos] = useState([]);
 
+  useEffect(() => {
+        fetch('http://localhost:5000/veiculos')
+            .then(res => res.json())
+            .then(data => {
+      
+                if (!data.erro) {
+                    setListaVeiculos(data);
+                }
+            })
+            .catch(err => console.error("Erro ao buscar veículos:", err));
+    }, []);
 return(
   
         <main>
@@ -21,20 +33,25 @@ return(
                 <div className="album py-5 bg-body-tertiary">
                   <div className="container">
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        {carros.map(carro => (
+                        {listaVeiculos.length > 0 ? (
+                            listaVeiculos.map(carro => (
+                                <CardVeiculo 
+                                    key={carro.id}
+                                    id={carro.id}
+                                    img={`http://localhost:5000/uploads/${carro.capa}`}
+                                    titulo={`${carro.marca} ${carro.modelo}`}
+                                    preco={carro.valor} 
+                                />
+                            ))
+                        ) : (
+                            <div style={{ width: '100%', textAlign: 'center', marginTop: '50px' }}>
+                                <h4>Nenhum veículo cadastrado no momento.</h4>
+                            </div>
+                        )}
                         
-                            <CardVeiculo 
-                              key={carro.id}
-                              id={carro.id}
-                              img={carro.imagens[0]}
-                              titulo={carro.titulo}
-                              preco={carro.preco}
-                            />
-                          
-                         ))}
-                      </div>
-                  </div>
+                    </div>
                 </div>
+            </div>
         </main>
     );
 }

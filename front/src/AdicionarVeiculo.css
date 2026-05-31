@@ -1,25 +1,51 @@
-.forms{
-    width: 25%;
+.form {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5%;
-    margin-bottom: 1%;
-    background-color: rgba(248, 244, 244, 0.425);
-    border-radius: 10%;
     justify-content: center;
-    height: 50vh;
-    margin-left: 37%;
+    padding: 20px;
+    width: 100%;
 }
 
-.forms input, select{
+.forms{
+    display: flex; 
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px; 
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+    margin-bottom: 1%;
+    background-color: rgba(244, 248, 248, 0.9); 
+    border-radius: 35px; 
+    padding: 40px 20px;
+    justify-content: center;
+    height: auto;
+}
+
+.forms input, select, textarea{
     height: 50px;
     width: 70%;
     background-color: #ecedee;
     border-style: none;
-    border-radius: 6px;
+    border-radius: 10px;
     margin-bottom: 3%;
     text-align: center;
+    padding: 10px 15px;
+    font-family: inherit;
+}
+
+.forms input, select {
+    height: 50px;
+    text-align: center;
+}
+
+.forms input::placeholder, textarea::placeholder{
+    color: black;
+}
+
+.forms textarea {
+    min-height: 120px; 
+    text-align: left; 
+    resize: vertical;
 }
 
 .forms button{
@@ -32,7 +58,72 @@
     margin-top: 30px;
 }
 
-.criar-conta{
-    text-decoration: none;
-    font-size: larger;
+.upload{
+    border: 2px solid #888;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    width: 80%;
+    margin: 15px auto;
 }
+
+.galeria-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.foto-principal {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+}
+
+.thumbnails{
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0;
+    justify-content: center;
+}
+
+.thumbnail-wrapper {
+    position: relative;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 2px;
+    flex-shrink: 0;
+}
+
+.thumbnail-wrapper.ativa {
+    border: 2px solid #007bff;
+}
+
+.thumbnail-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.btn-remover {
+    position: absolute;
+    top: -40px;
+    right: -5px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    width: 1px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit{
+     margin-top: 20px,;
+     padding: 10px; 
+     cursor: pointer;
+    }
